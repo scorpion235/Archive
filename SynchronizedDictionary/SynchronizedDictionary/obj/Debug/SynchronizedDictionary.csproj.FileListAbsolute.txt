@@ -1,0 +1,5 @@
+C:\Users\Дюгуров\Desktop\SynchronizedDictionary\SynchronizedDictionary\bin\Debug\SynchronizedDictionary.exe.config
+C:\Users\Дюгуров\Desktop\SynchronizedDictionary\SynchronizedDictionary\bin\Debug\SynchronizedDictionary.exe
+C:\Users\Дюгуров\Desktop\SynchronizedDictionary\SynchronizedDictionary\bin\Debug\SynchronizedDictionary.pdb
+C:\Users\Дюгуров\Desktop\SynchronizedDictionary\SynchronizedDictionary\obj\Debug\SynchronizedDictionary.exe
+C:\Users\Дюгуров\Desktop\SynchronizedDictionary\SynchronizedDictionary\obj\Debug\SynchronizedDictionary.pdb
