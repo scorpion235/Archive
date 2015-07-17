@@ -1,0 +1,9 @@
+C:\Users\scorpion\Desktop\Util\Util\bin\Debug\Util.exe
+C:\Users\scorpion\Desktop\Util\Util\bin\Debug\Util.pdb
+C:\Users\scorpion\Desktop\Util\Util\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\scorpion\Desktop\Util\Util\obj\x86\Debug\Util.Main.resources
+C:\Users\scorpion\Desktop\Util\Util\obj\x86\Debug\Util.Properties.Resources.resources
+C:\Users\scorpion\Desktop\Util\Util\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\scorpion\Desktop\Util\Util\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\scorpion\Desktop\Util\Util\obj\x86\Debug\Util.exe
+C:\Users\scorpion\Desktop\Util\Util\obj\x86\Debug\Util.pdb
