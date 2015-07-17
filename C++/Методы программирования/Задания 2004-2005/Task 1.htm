@@ -1,0 +1,90 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="ru">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Структуры данных: стек и список</title>
+</head>
+
+<body>
+
+<p align="center"><font face="Arial" size="4">Задания для практических занятий по теме<br>
+«Структуры данных: стек и список»<br>
+Часть 1</font></p>
+
+<p>1. Класс <font face="Courier New">Stack</font> имеет интерфейс<br>
+&nbsp;<br>
+<font face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp; Stack=<b>class</b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span lang="en-us"><b>int</b></span> Pop(<span lang="en-us">TElement </span>x); //извлечь x из стека <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span lang="en-us"><b>int</b></span> Push(<span lang="en-us">TElement</span> x); //поместить x в стек<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+<span lang="en-us"><b>int</b></span> IsEmpty<span lang="en-us">()</span>; //проверка стека на пустоту<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span lang="en-us"><b>TElement</b></span> Top<span lang="en-us">()</span>; //прочитать вершину<br>
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<b>end</b>;<br>
+</font>&nbsp;<br>
+&nbsp;&nbsp;&nbsp; 1) Реализовать класс <font face="Courier New">Stack</font> на 
+основе массива и на основе ссылочного списка<span lang="en-us"> (</span>язык 
+программирования&nbsp; С++<span lang="en-us">)</span>.<br>
+&nbsp;&nbsp;&nbsp; 2) Сравнить эффективность двух реализаций класса. Для этого 
+сгенерировать последовательность<span lang="en-us"> </span>операций со стеком из 
+10<sup>7</sup> действий (хранить в памяти). Затем проделать указанную 
+последовательность операций с двумя реализациями стека, измеряя при этом 
+продолжительность этой процедуры.<br>
+&nbsp;&nbsp;&nbsp; 3) Какие последовательности операций целесообразно 
+использовать на шаге 2 для проверки производительности?<br>
+&nbsp;&nbsp;&nbsp; 4) Реализовать процедуру сортировки элементов стека, 
+используя только интерфейс класса и переменные типа <font face="Courier New">
+TElement</font> (возможно использование нескольких стеков).<br>
+&nbsp;&nbsp;&nbsp; 5) Измерить скорость работы процедуры шага 4 для различных 
+реализаций. Для этого подготовить тестовую программу, содержащую реализации стека и 
+процедуры сортировки, а также производящую следующие действия:</p>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber1">
+  <tr>
+    <td width="6%">&nbsp;</td>
+    <td width="94%">а) открытие файла <span lang="en-us">
+data.txt </span>и считывание в стек его содержимого (в файле хранятся 50000 
+целых чисел по одному в каждой строке);</td>
+  </tr>
+  <tr>
+    <td width="6%">&nbsp;</td>
+    <td width="94%">б) сортировка содержимого стека с одновременным замером 
+    затраченного на это время;</td>
+  </tr>
+  <tr>
+    <td width="6%">&nbsp;</td>
+    <td width="94%">в) повторить шаги а) и б) для второй реализации стека;</td>
+  </tr>
+  <tr>
+    <td width="6%">&nbsp;</td>
+    <td width="94%">г) вывод на экран сообщение вида 
+    <p><font face="Courier New">реализация с помощью массива: <span lang="en-us">
+    x</span> секунд<br>
+    реализация с помощью списка : <span lang="en-us">y</span> секунд</font></p>
+    <p>Точность измерений до 0.001 с.</td>
+  </tr>
+</table>
+
+<p>&nbsp;&nbsp;&nbsp; <b>6*</b>) Реализовать структуру данных
+<font face="Courier New"><b>массив стеков</b></font>, содержащую
+<span lang="en-us"><i>k</i> </span>стеков с общим количеством элементов не более
+<i><span lang="en-us">n</span></i>. Во внутренней реализации разрешается 
+использование <i>не более трех</i> целочисленных массивов и нескольких 
+целочисленных переменных. Вызовы функций для операций со стеками должны быть 
+организованы следующим образом:<br>
+<font face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp; операция(<span lang="en-us">&lt;</span>номер 
+стека<span lang="en-us">&gt;[,&lt;</span>элемент<span lang="en-us">&gt;]</span>)<span lang="en-us">;<br>
+</span></font>Использование указателей не допускается.</p>
+
+<p><font size="2">Совпадение кусков исходного кода у нескольких студентов 
+карается презрением на экзамене, а также плохой оценкой.</font></p>
+<p align="right"><span lang="en-us"><font size="1">&nbsp;<font face="Arial">©
+</font>Mikhail Leptchinski, 200</font></span><font size="1">4</font></p>
+
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+Array 1
+Best time with M=5: 0.015 sec
+Minimaze number of operation Pop() with M=5: 43488
+--------------------------------------------------------------------------------
+Array 2
+Best time with M=4: 0.015 sec
+Minimaze number of operation Pop() with M=5: 43918
+--------------------------------------------------------------------------------
+Array 3
+Best time with M=5: 0.016 sec
+Minimaze number of operation Pop() with M=5: 42412
+--------------------------------------------------------------------------------
+Array 4
+Best time with M=5: 0.015 sec
+Minimaze number of operation Pop() with M=5: 44252
+--------------------------------------------------------------------------------
+Array 5
+Best time with M=4: 0.015 sec
+Minimaze number of operation Pop() with M=5: 43422
+--------------------------------------------------------------------------------
+Array 6
+Best time with M=3: 0.015 sec
+Minimaze number of operation Pop() with M=4: 45598
+--------------------------------------------------------------------------------
+Array 7
+Best time with M=2: 0.015 sec
+Minimaze number of operation Pop() with M=5: 43594
+--------------------------------------------------------------------------------
+Array 8
+Best time with M=3: 0.015 sec
+Minimaze number of operation Pop() with M=5: 44880
+--------------------------------------------------------------------------------
+Array 9
+Best time with M=4: 0.015 sec
+Minimaze number of operation Pop() with M=5: 42678
+--------------------------------------------------------------------------------
+Array 10
+Best time with M=3: 0.015 sec
+Minimaze number of operation Pop() with M=5: 46324
+--------------------------------------------------------------------------------
+Array 11
+Best time with M=5: 0.015 sec
+Minimaze number of operation Pop() with M=5: 45620
+--------------------------------------------------------------------------------
+Array 12
+Best time with M=4: 0.015 sec
+Minimaze number of operation Pop() with M=5: 44312
+--------------------------------------------------------------------------------
+Array 13
+Best time with M=3: 0.015 sec
+Minimaze number of operation Pop() with M=5: 44914
+--------------------------------------------------------------------------------
+Array 14
+Best time with M=5: 0.016 sec
+Minimaze number of operation Pop() with M=5: 44296
+--------------------------------------------------------------------------------
+Array 15
+Best time with M=5: 0.000 sec
+Minimaze number of operation Pop() with M=5: 43290
+--------------------------------------------------------------------------------
+Array 16
+Best time with M=5: 0.015 sec
+Minimaze number of operation Pop() with M=5: 45954
+--------------------------------------------------------------------------------
+Array 17
+Best time with M=5: 0.016 sec
+Minimaze number of operation Pop() with M=5: 43904
+--------------------------------------------------------------------------------
+Array 18
+Best time with M=5: 0.015 sec
+Minimaze number of operation Pop() with M=5: 43420
+--------------------------------------------------------------------------------
+Array 19
+Best time with M=5: 0.015 sec
+Minimaze number of operation Pop() with M=5: 44602
+--------------------------------------------------------------------------------
+Array 20
+Best time with M=4: 0.015 sec
+Minimaze number of operation Pop() with M=5: 44358
+--------------------------------------------------------------------------------

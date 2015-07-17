@@ -1,0 +1,86 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="ru">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Структуры данных: стек и список</title>
+</head>
+
+<body>
+
+<p align="center"><font face="Arial" size="4">Задания для практических занятий по теме<br>
+«Структуры данных: стек и список»<br>
+Часть 2</font></p>
+
+<p>Класс <font face="Courier New">List</font> имеет интерфейс<br>
+<font face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; <b>struct</b> <span lang="en-us">TN</span>ode<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<b>int</b> key; <span lang="en-us">&nbsp;&nbsp;
+</span>// сами данные <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span lang="en-us">TN</span>ode *pred; 
+// предыдущий элемент<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span lang="en-us">TN</span>ode *next; 
+// следующий элемент<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp; List=<b>class</b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+//указатель на корень списка<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 
+<span lang="en-us">TNode *</span>Roote;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+//добавить элемент перед данным<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <b>
+<span lang="en-us">int</span></b> AddBefore(<span lang="en-us">T</span>Node<span lang="en-us"> 
+*x,TElement k</span>ey);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+//добавить элемент после данного<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <b>
+<span lang="en-us">int</span></b> AddAfter(<span lang="en-us">T</span>Node<span lang="en-us"> 
+*x,TElement </span><span lang="en-us">k</span>ey);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+//удалить элемент, переданный по указателю<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <b>
+<span lang="en-us">int</span></b> Delete(<span lang="en-us">TNode *x</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><span lang="en-us">&nbsp;</span>end</b>;</font></p>
+<p><span lang="en-us">&nbsp;&nbsp;&nbsp; </span>1)<span lang="en-us"> </span>
+Реализовать класс <font face="Courier New">List</font>.<br>
+<span lang="en-us">&nbsp;&nbsp;&nbsp; </span>2)&nbsp;Реализовать процедуру 
+объединения двух списков.<br>
+<span lang="en-us">&nbsp;&nbsp;&nbsp; </span>3)&nbsp;Реализовать в классе
+<font face="Courier New">List</font> дополнительные методы <br>
+<font face="Courier New"><span lang="en-us">&nbsp;&nbsp;&nbsp; TNode</span>
+<span lang="en-us">*</span>FindKey(<span lang="en-us">TElement </span>key); //возвращающий указатель на элемент 
+списка с ключом key<br>
+<span lang="en-us">&nbsp;&nbsp;&nbsp; TNode *</span>Item(<span lang="en-us"><b>int</b>
+</span>Index); 
+//возвращает указатель на элемент списка отстоящий на Index позиций от начала<br>
+<span lang="en-us">&nbsp;&nbsp;&nbsp; <b>int</b></span> Count<span lang="en-us">()</span>; 
+//возвращает количество элементов списка</font><br>
+<span lang="en-us">&nbsp;&nbsp;&nbsp; </span>4)<span lang="en-us"> </span>
+Реализовать процедуру сортировки элементов списка. Разрешается расширить 
+интерфейс класса. Какие вспомогательные методы и поля Вы реализовали?<br>
+<span lang="en-us">&nbsp;&nbsp;&nbsp; </span>5)&nbsp;Дано два списка, элементы 
+которых упорядочены по возрастанию. Реализовать процедуру слияния списков, <i>
+сохраняющую порядок</i>.<br>
+<span lang="en-us">&nbsp;&nbsp;&nbsp; 6) </span>Дан список. Реализовать 
+процедуру, осуществляющую <i>преобразование пекаря</i>: выбираются все элементы 
+с нечетными номерами и в том же порядке пристраиваются в конец списка. Например, 
+если исходный список есть 1 2 3 4 5 6 7 8 9, то после преобразования пекаря он 
+превратится в 2 4 6 8 1 3 5 7 9.<br>
+Произвести замер производительности вашего преобразования пекаря путем 
+многократного применения к некоторому списку, содержащему большое количество 
+элементов.<br>
+При реализации преобразования разрешается использовать только экземпляры класса
+<span lang="en-us"><font face="Courier New">List</font> </span>и переменные 
+простых типов.<br>
+Можете ли вы предложить расширение интерфейса класса, которое позволить 
+увеличить производительность вашего алгоритма?<br>
+&nbsp;</p>
+<p align="right"><span lang="en-us"><font size="1">&nbsp;<font face="Arial">©
+</font>Mikhail Leptchinski, 2003</font></span></p>
+
+</body>
+
+</html>

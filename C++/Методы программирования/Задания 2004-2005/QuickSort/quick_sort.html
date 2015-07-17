@@ -1,0 +1,514 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+        <title>Быстрая сортировка</title>
+<style type="text/css">
+<!-- 
+a {text-decoration: none}
+a:hover {text-decoration: underline; color: #ff6600 }
+h2 {font-size:14pt; font-family:sans-serif; font-weight:bold }
+pre {font-size:9pt}
+.source {font-size:9pt; color: #666699}
+.l2 {font-size:10pt}
+.l3 {font-size:9pt}
+
+-->
+</style>
+<META NAME=keywords CONTENT="алгоритм, построение, создание, написание, исходник, программа, определение, метод, вычисление, поиск, нахождение, реализация, описание, сортировка, sort, sorting, ">
+<META NAME=description CONTENT="Алгоритмы сортировки. Быстрая сортировка.">
+<META NAME=copyright CONTENT="Основной контент - Кантор Илья, дизайн - Владимир Городулин, основа движка и разнообразная помощь - Алексей Фортуна">
+</head>
+
+<body bgcolor="#eeeeee" link="#0066cc" vlink="#0066cc" leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+
+
+<!-- logo header ... -->
+<table width=100% border=0 cellspacing=0 cellpadding=0>
+<tr><td colspan=2 width=100% bgcolor=#DD6E00><br></td></tr>
+<tr><td colspan=2 bgcolor=#ffffff><br></td></tr>
+<tr><td></td><td width=100% background="/img/mgrad.gif" bgcolor=#FE7E00 nowrap><table border=0 cellpadding=0 cellspacing=3 align=right>
+      <tr valign=middle>
+<!--
+
+      <FORM NAME="search_form" METHOD=GET ACTION="/cgi-bin/search.cgi">
+      <td><INPUT TYPE="text" NAME="q" SIZE=30 VALUE="" class="inputfield"></td>
+      <td><INPUT TYPE="image" src="/img/search.gif" width=68 height=19 border=0 onclick="this.blur()"></td>
+      </FORM>
+
+-->
+      </tr>
+      </table></td></tr>
+<tr><td colspan=2 bgcolor=#ffffff><br></td></tr>
+</table>
+<!-- ...logo header -->
+
+<!-- main menu ... -->
+<table width=100% border=0 cellspacing=0 cellpadding=0>
+<tr><td bgcolor=#57A7EA>
+        <table border=0 cellspacing=0 cellpadding=0><tr>
+        <td><a href="/"></a><br></td>
+        <td><a href="/olimp/"></a><br></td>
+        <td><a href="/contact.php"></a><br></td>
+        <td><a href="/forum/"></a><br></td>
+        <td><a href="/aboutsite.php"></a><br></td>
+<!--        <td><a href="/links/"></a><br></td>-->
+        </tr></table>
+</td></tr>
+<tr><td bgcolor=#ffffff><br></td></tr>
+</table>
+<!-- ...main menu -->
+
+<!-- path line... -->
+<table cellspacing=2 cellpadding=2 border=0 width=100% bgcolor=#dddddd>
+<tr><td nowrap><nobr><font face="Arial" size=1><b>Path:  <a href="/sort/">Сортировка</a> &raquo; Быстрая</td></tr>
+</table>
+<!-- ...path line -->
+
+<!-- 
+==============
+ MAIN CONTENT:
+==============
+-->
+
+<!-- табличка для создания отступов... -->
+<table cellspacing=0 cellpadding=12 border=0 width="100%">
+<tr><td>
+
+
+<table cellpadding=0 cellspacing=0 border=0 width="100%">
+
+
+
+<tr><td colspan=2><font face="Arial" color="#333333" size=4><b>&nbsp; Быстрая сортировка</font></td></tr>
+
+<tr><td colspan=2 bgcolor=#999999 colspan=2><br></td></tr>
+
+                                                           
+
+<tr valign=top>
+        <td align=center><br></td>
+        <td width="100%"><br>
+
+        
+
+<p>"Быстрая сортировка", хоть и была разработана более 40 лет назад, является наиболее широко применяемым и одним их самых эффективных алгоритмов.</p>
+
+<p>Метод основан на подходе "разделяй-и-властвуй". Общая схема такова: </p>
+
+<ol>
+<li>из массива выбирается некоторый опорный элемент a[i],</li>
+<li>запускается процедура разделения массива, которая перемещает все ключи, меньшие, либо равные a[i], влево от него, а все ключи, большие, либо равные a[i] - вправо,</li>
+<li>теперь массив состоит из двух подмножеств, причем левое меньше, либо равно правого,<br>
+
+</li>
+<li>для обоих подмассивов: если в подмассиве более двух элементов, рекурсивно запускаем для него ту же процедуру.</li>
+</ol>
+
+<p>В конце получится полностью отсортированная последовательность.</p>
+
+<p>Рассмотрим алгоритм подробнее.</p>
+
+
+    </td>
+</tr>
+<tr><td colspan=2><font face="Arial" color="#4B5D70" size=3><b><br>&nbsp; Разделение массива</td></tr>
+<tr><td colspan=2 bgcolor=#999999 colspan=2><br></td></tr>
+<tr valign=top>
+    <td align=center><br></td>
+    <td width="100%"><br>
+<p>На входе массив a[0]...a[N] и опорный элемент p,  по которому будет производиться разделение. </p>
+
+<ol>
+<li>Введем два указателя: i и j. В начале алгоритма они указывают, соответственно, на левый и правый конец последовательности.</li>
+<li>Будем двигать указатель i с шагом в 1 элемент по направлению к концу массива, пока не будет найден элемент a[i] &gt;= p. Затем аналогичным образом начнем двигать указатель j от конца массива к началу, пока не будет найден a[j] &lt;= p. </li>
+<li>Далее, если i &lt;= j, меняем a[i] и a[j] местами и продолжаем двигать i,j по тем же правилам...</li>
+<li>Повторяем шаг 3, пока i &lt;= j.</li>
+</ol>
+
+<p>Рассмотрим работу процедуры для массива a[0]...a[6] и опорного элемента p = a[3].</p>
+
+<div align="center"></div>
+
+<p>Теперь массив разделен на две части: все элементы левой меньше либо равны p,  все элементы правой - больше, либо равны p. Разделение завершено.</p>
+
+
+    </td>
+</tr>
+<tr><td colspan=2><font face="Arial" color="#4B5D70" size=3><b><br>&nbsp; Общий алгоритм</td></tr>
+<tr><td colspan=2 bgcolor=#999999 colspan=2><br></td></tr>
+<tr valign=top>
+    <td align=center><br></td>
+    <td width="100%"><br>
+Псевдокод.<br>
+<pre class="source">
+quickSort ( массив a, верхняя граница N ) {
+    Выбрать опорный элемент p - середину массива
+    Разделить массив по этому элементу
+    Если подмассив слева от p содержит более одного элемента, 
+        вызвать quickSort для него. 
+    Если подмассив справа от p содержит более одного элемента,
+         вызвать quickSort для него. 
+}</pre>
+Реализация на Си.<br>
+<pre class="source">
+template&lt;class T&gt;
+void quickSortR(T* a, long N) {
+<font color="#009999">// На входе - массив a[], a[N] - его последний элемент.
+</font>
+  long i = 0, j = N; 		<font color="#009999">// поставить указатели на исходные места
+</font>  T temp, p;
+
+  p = a[ N&gt;&gt;1 ];		<font color="#009999">// центральный элемент
+</font>
+  <font color="#009999">// процедура разделения
+</font>  do {
+    while ( a[i] &lt; p ) i++;
+    while ( a[j] &gt; p ) j--;
+
+    if (i &lt;= j) {
+      temp = a[i]; a[i] = a[j]; a[j] = temp;
+      i++; j--;
+    }
+  } while ( i&lt;=j );
+
+
+  <font color="#009999">// рекурсивные вызовы, если есть, что сортировать 
+</font>  if ( j &gt; 0 ) quickSortR(a, j);
+  if ( N &gt; i ) quickSortR(a+i, N-i);
+}</pre>
+
+<p>Каждое разделение требует, очевидно,   Theta(n) операций. Количество шагов деления(глубина рекурсии) составляет приблизительно log n, если массив делится на более-менее равные части. Таким образом, общее быстродействие: O(n log n), что и имеет место на практике.</p>
+
+<p>Однако,  возможен случай таких  входных данных, на которых алгоритм будет работать за O(n<sup>2</sup>) операций. Такое происходит, если каждый раз в качестве центрального элемента выбирается максимум или минимум входной последовательности. Если данные взяты случайно,  вероятность этого равна 2/n. И эта вероятность должна реализовываться на каждом шаге... Вообще говоря, малореальная ситуация.</p>
+
+<p>Метод неустойчив. Поведение довольно естественно, если учесть, что при частичной упорядоченности повышаются шансы разделения массива на более равные части.</p>
+
+<p>Сортировка использует дополнительную память, так как приблизительная глубина рекурсии составляет O(log n), а данные о рекурсивных подвызовах каждый раз добавляются в стек.</p>
+
+<h3><FONT color=#003F73><b>Модификации кода и метода</b></FONT></h3>
+
+<ol>
+<li><p>Из-за рекурсии и других "накладных расходов" Quicksort может оказаться не столь уж быстрой для коротких массивов. Поэтому, если в массиве меньше CUTOFF элементов (константа зависит от реализации, обычно равна от 3 до 40), вызывается сортировка вставками. Увеличение скорости может составлять до 15%.</p>
+
+<p>Для проведения метода в жизнь можно модифицировать функцию quickSortR, заменив последние 2 строки на </p>
+<pre class="source">
+	if ( j &gt; CUTOFF )   quickSortR(a, j);
+	if ( N &gt; i + CUTOFF ) quickSortR(a+i, N-i);
+	</pre><p>Таким образом, массивы из CUTOFF элементов и меньше досортировываться не будут, и в конце работы quickSortR() массив разделится на последовательные части из &lt;=CUTOFF элементов, отсортированные друг относительно друга. Близкие элементы имеют близкие позиции, поэтому, аналогично сортировке Шелла, вызывается insertSort(), которая доводит процесс до конца.</p>
+<pre class="source">
+template&lt;class T&gt;
+void qsortR(T *a, long size) {
+	quickSortR(a, size-1);
+	insertSort(a, size); <font color="#009999">// insertSortGuarded быстрее, но нужна функция setmax()
+</font>}</pre></li>
+
+<li>В случае явной рекурсии, как в программе выше, в стеке сохраняются не только границы подмассивов, но и ряд совершенно ненужных параметров, таких как локальные переменные. Если эмулировать стек программно, его размер можно уменьшить в несколько раз.
+</li>
+<li>Чем на более равные части будет делиться массив - тем лучше. Потому в качестве опорного целесообразно брать средний из трех, а если массив достаточно велик - то из девяти произвольных элементов.</li>
+<li>Пусть входные последовательности очень плохи для алгоритма. Например, их специально подбирают, чтобы средний элемент оказывался каждый раз минимумом. Как сделать QuickSort устойчивой к такому "саботажу" ? Очень просто - выбирать в качестве опорного случайный элемент входного массива. Тогда любые неприятные закономерности во входном потоке будут нейтрализованы. Другой вариант - переставить перед сортировкой элементы массива случайным образом.</li>
+<li>Быструю сортировку можно использовать и для двусвязных списков. Единственная проблема при этом - отсутствие непосредственного доступа к случайному элементу. Так что в качестве опорного приходится выбирать первый элемент, и либо надеяться на хорошие исходные данные, либо случайным образом переставить элементы перед сортировкой.</li>
+</ol>
+
+<p>Рассмотрим наихудший случай, когда случайно выбираемые опорные элементы оказались очень плохими(близкими к экстремумам). Вероятность этого чрезвычайно мала, уже при n = 1024 она меньше 2<sup>-50</sup>, так что интерес скорее теоретический, нежели практический. Однако, поведение "быстрой сортировки" является "эталоном" для аналогично реализованных алгоритмов типа "разделяй-и-властвуй". Не везде можно свести вероятность худшего случая практически к нулю, поэтому такая ситуация заслуживает изучения.</p>
+
+<p>Пусть, для определенности, каждый раз выбирается наименьший элемент a<sub>min</sub> . Тогда  процедура разделения переместит этот элемент в начало массива и на следующий уровень рекурсии отправятся две части: одна из единственного элемента a<sub>min</sub>, другая содержит остальные n-1 элемента массива. Затем процесс повторится для части из (n-1) элементов..  И так далее..<br>
+При использовании рекурсивного кода, подобного написанному выше, это будет означать n вложенных рекурсивных вызовов функции quickSort.<br>
+Каждый рекурсивный вызов означает сохранение информации о текущем положении дел. Таким образом, сортировка требует O(n) дополнительной памяти.. И не где-нибудь, а в стеке. При достаточно большом n такое требование может привести к непредсказуемым последствиям.</p>
+
+<p>Для исключения подобной ситуации можно заменить рекурсию на итерации, реализовав стек на основе массива. Процедура разделения  будет выполняться в виде цикла.<br>
+Каждый раз, когда массив делится на две части, в стек будет направляться запрос на сортировку большей из них, а меньшая будет обрабатываться на следующей итерации. Запросы будут выбираться из стека по мере освобождения процедуры разделения от текущих задач. Сортировка заканчивает свою работу, когда запросы кончаются.</p>
+Псевдокод.<br>
+<pre class="source">
+Итеративная QuickSort (массив a, размер size) {
+Положить в стек запрос на сортировку массива от 0 до size-1.
+	
+	do {
+        Взять границы lb и ub текущего массива из стека.
+		do {
+            1. Произвести операцию разделения над текущим массивом a[lb..ub].
+            2. Отправить границы большей из получившихся частей в стек.
+            3. Передвинуть границы ub, lb чтобы они указывали на меньшую часть.
+		} пока меньшая часть состоит из двух или более элементов
+	} пока в стеке есть запросы
+}
+</pre>Реализация на Си.<br>
+
+<pre class="source">
+#define MAXSTACK 2048		<font color="#009999">// максимальный размер стека
+</font>
+template&lt;class T&gt;
+void qSortI(T a[], long size) {
+
+  long i, j;   			<font color="#009999">// указатели, участвующие в разделении
+</font>  
+  long lb, ub;  		<font color="#009999">// границы сортируемого в цикле фрагмента
+</font>
+  long lbstack[MAXSTACK], ubstack[MAXSTACK]; <font color="#009999">// стек запросов
+</font>                        <font color="#009999">// каждый запрос задается парой значений,
+</font>                        <font color="#009999">// а именно: левой(lbstack) и правой(ubstack) 
+</font>                        <font color="#009999">// границами промежутка
+</font>
+  long stackpos = 1;   	<font color="#009999">// текущая позиция стека
+</font>  long ppos;            <font color="#009999">// середина массива
+</font>  T pivot;              <font color="#009999">// опорный элемент
+</font>  T temp; 
+
+  lbstack[1] = 0;
+  ubstack[1] = size-1;
+
+  do {
+ 
+    <font color="#009999">// Взять границы lb и ub текущего массива из стека.
+</font> 
+    lb = lbstack[ stackpos ];
+    ub = ubstack[ stackpos ];
+    stackpos--;
+
+    do {
+      <font color="#009999">// Шаг 1. Разделение по элементу pivot
+</font>
+      ppos = ( lb + ub ) &gt;&gt; 1;
+      i = lb; j = ub; pivot = a[ppos];
+
+      do {
+        while ( a[i] &lt; pivot ) i++;
+        while ( pivot &lt; a[j] ) j--;
+
+        if ( i &lt;= j ) {
+          temp = a[i]; a[i] = a[j]; a[j] = temp;
+          i++; j--;
+        }
+      } while ( i &lt;= j );
+
+      <font color="#009999">// Сейчас указатель i указывает на начало правого подмассива,
+</font>      <font color="#009999">// j - на конец левого (см. иллюстрацию выше), lb ? j ? i ? ub.
+</font>      <font color="#009999">// Возможен случай, когда указатель i или j выходит за границу массива
+</font>
+      <font color="#009999">// Шаги 2, 3. Отправляем большую часть в стек  и двигаем lb,ub
+</font>
+      if ( i &lt; ppos ) {     <font color="#009999">// правая часть больше
+</font>
+        if ( i &lt; ub ) {     <font color="#009999">//  если в ней больше 1 элемента - нужно 
+</font>          stackpos++;       <font color="#009999">//  сортировать, запрос в стек
+</font>          lbstack[ stackpos ] = i;
+          ubstack[ stackpos ] = ub;
+        }
+        ub = j;             <font color="#009999">//  следующая итерация разделения
+</font>                            <font color="#009999">//  будет работать с левой частью
+</font>
+      } else {       	    <font color="#009999">// левая часть больше
+</font>
+        if ( j &gt; lb ) { 
+          stackpos++;
+          lbstack[ stackpos ] = lb;
+          ubstack[ stackpos ] = j;
+        }
+        lb = i;
+      }
+
+    } while ( lb &lt; ub );        <font color="#009999">// пока в меньшей части более 1 элемента
+</font>
+  } while ( stackpos != 0 );    <font color="#009999">// пока есть запросы в стеке
+</font>}</pre>
+<p>Размер стека при такой реализации всегда имеет порядок O(log n), так что указанного в MAXSTACK значения хватает с лихвой.</p>
+
+
+<a href="/forum/"><p align="right"><u><i>Обсудить на форуме</i></u> &raquo;</p></a>
+    </td>
+</tr>
+<tr><td colspan=2><font face="Arial" color="#4B5D70" size=3><b><br>&nbsp; Комментарии для веб-мастера</td></tr>
+<tr><td colspan=2 bgcolor=#999999 colspan=2><br></td></tr>
+<tr valign=top>
+    <td align=center><br></td>
+    <td width="100%"><br><br><br><table cellspacing=0 cellpadding=0 border=0 width=100%>
+<tr>
+  <td rowspan=4 width=0%><br></td>
+  <td width=100%><font color=#000000 face="Courier New" size=2>Автор: <a href="&#109;&#097;&#105;&#108;&#116;&#111;&#058;&#110;&#105;&#099;&#104;&#101;&#103;&#111;&#064;&#115;&#111;&#118;&#115;&#101;&#109;&#046;&#110;&#101;&#116;"><font color=#990000>geshido</a></td>
+  <td rowspan=4 width=0%><br></td>
+</tr>
+<tr><td><font color=#000000 face="Courier New" size=2>Время: 10-02-04 04:01</td></tr>
+<tr><td bgcolor=#bfbfbf><br></td></tr>
+<tr><td><br clear=all><font color=#333333 face="Courier New" size=2><pre>Хоть кто-нибудь может поделиться алгоритмом точного поиска медианы? или 
+хотя бы натолкнуть на правильный путь.. Весь интернет перерыл (по мере 
+своих возможностей конечно), нигде никакой информации. :(   </pre><br></td></tr><tr><td colspan=3 align=right><small>&nbsp;&nbsp;</td></tr><tr><td colspan=2 bgcolor=#666666><br></td><td></td></tr>
+</table></a><br><br><br><br><table cellspacing=0 cellpadding=0 border=0 width=100%>
+<tr>
+  <td rowspan=4 width=0%><br></td>
+  <td width=100%><font color=#000000 face="Courier New" size=2>Автор: <a href="&#109;&#097;&#105;&#108;&#116;&#111;&#058;&#097;&#100;&#122;&#064;&#110;&#115;&#107;&#046;&#114;&#117;"><font color=#990000>aDZ</a></td>
+  <td rowspan=4 width=0%><br></td>
+</tr>
+<tr><td><font color=#000000 face="Courier New" size=2>Время: 19-03-04 11:46</td></tr>
+<tr><td bgcolor=#bfbfbf><br></td></tr>
+<tr><td><br clear=all><font color=#333333 face="Courier New" size=2><pre>Вот поиск медианы, псевдокод, вроде рабочий =)  
+ Find_median (A, n, k) // Поиск медианы  
+
+  l &lt;-- 1
+  r &lt;-- n
+  while l&lt;r
+        do x &lt;-- 
+A[k]
+           i &lt;-- l
+           j &lt;-- r
+           repeat 
+repeat j &lt;-- j-1
+                  until A[j] &lt;= 
+x
+                  repeat i &lt;-- i+1
+                  until A[i] 
+&gt;= x
+                  if i &lt; j
+                     then t &lt;-- 
+A[i]
+                          A[i] &lt;-- 
+A[j]
+                          A[j] &lt;-- t
+           until i &lt; 
+j
+           if j &lt; k
+              then l &lt;-- i
+           if j 
+&gt; k
+              then r &lt;-- j
+  return j
+  </pre><br></td></tr><tr><td colspan=3 align=right><small>&nbsp;&nbsp;</td></tr><tr><td colspan=2 bgcolor=#666666><br></td><td></td></tr>
+</table></a><br><br><table cellspacing=0 cellpadding=0 border=0 width=100%>
+<tr>
+  <td rowspan=4 width=0%><br></td>
+  <td width=100%><font color=#000000 face="Courier New" size=2>Автор: <font color=#990000>Vitaly</td>
+  <td rowspan=4 width=0%><br></td>
+</tr>
+<tr><td><font color=#000000 face="Courier New" size=2>Время: 21-04-04 02:58</td></tr>
+<tr><td bgcolor=#bfbfbf><br></td></tr>
+<tr><td><br clear=all><font color=#333333 face="Courier New" size=2><pre>А можно попросить написать без классов?  </pre><br></td></tr><tr><td colspan=3 align=right><small>&nbsp;&nbsp;</td></tr><tr><td colspan=2 bgcolor=#666666><br></td><td></td></tr>
+</table></a><br><br><table cellspacing=0 cellpadding=0 border=0 width=100%>
+<tr>
+  <td rowspan=4 width=0%><br></td>
+  <td width=100%><font color=#000000 face="Courier New" size=2>Автор: <font color=#990000>AiBi</td>
+  <td rowspan=4 width=0%><br></td>
+</tr>
+<tr><td><font color=#000000 face="Courier New" size=2>Время: 06-05-04 08:22</td></tr>
+<tr><td bgcolor=#bfbfbf><br></td></tr>
+<tr><td><br clear=all><font color=#333333 face="Courier New" size=2><pre>Напишите как разбивать на три части  </pre><br></td></tr><tr><td colspan=3 align=right><small>&nbsp;&nbsp;</td></tr><tr><td colspan=2 bgcolor=#666666><br></td><td></td></tr>
+</table></a><br><br><table cellspacing=0 cellpadding=0 border=0 width=100%>
+<tr>
+  <td rowspan=4 width=0%><br></td>
+  <td width=100%><font color=#000000 face="Courier New" size=2>Автор: <font color=#990000>Vortex</td>
+  <td rowspan=4 width=0%><br></td>
+</tr>
+<tr><td><font color=#000000 face="Courier New" size=2>Время: 16-05-04 02:05</td></tr>
+<tr><td bgcolor=#bfbfbf><br></td></tr>
+<tr><td><br clear=all><font color=#333333 face="Courier New" size=2><pre>а как выглядит модификация Фрейзера-Мак-Келлара*?  </pre><br></td></tr><tr><td colspan=3 align=right><small>&nbsp;&nbsp;</td></tr><tr><td colspan=2 bgcolor=#666666><br></td><td></td></tr>
+</table></a><br><br><table cellspacing=0 cellpadding=0 border=0 width=100%>
+<tr>
+  <td rowspan=4 width=0%><br></td>
+  <td width=100%><font color=#000000 face="Courier New" size=2>Автор: <font color=#990000>kolobrod</td>
+  <td rowspan=4 width=0%><br></td>
+</tr>
+<tr><td><font color=#000000 face="Courier New" size=2>Время: 15-06-04 09:34</td></tr>
+<tr><td bgcolor=#bfbfbf><br></td></tr>
+<tr><td><br clear=all><font color=#333333 face="Courier New" size=2><pre> А ещё для VB  </pre><br></td></tr><tr><td colspan=3 align=right><small>&nbsp;&nbsp;</td></tr><tr><td colspan=2 bgcolor=#666666><br></td><td></td></tr>
+</table></a><br><br><table cellspacing=0 cellpadding=0 border=0 width=100%>
+<tr>
+  <td rowspan=4 width=0%><br></td>
+  <td width=100%><font color=#000000 face="Courier New" size=2>Автор: <a href="&#109;&#097;&#105;&#108;&#116;&#111;&#058;&#120;&#120;&#120;&#064;&#120;&#120;&#120;"><font color=#990000>n0p</a></td>
+  <td rowspan=4 width=0%><br></td>
+</tr>
+<tr><td><font color=#000000 face="Courier New" size=2>Время: 16-06-04 12:06</td></tr>
+<tr><td bgcolor=#bfbfbf><br></td></tr>
+<tr><td><br clear=all><font color=#333333 face="Courier New" size=2><pre>А может вам еще и программу за вас написать? Какое Delphi? Какой VB? 
+Программиста от мышевозилы отличает способность думать головой. Лично мне 
+и словесного описания хватило, чтобы забацать рабочий код на ассемблере.  </pre><br></td></tr><tr><td colspan=3 align=right><small>&nbsp;&nbsp;</td></tr><tr><td colspan=2 bgcolor=#666666><br></td><td></td></tr>
+</table></a><br><br><table cellspacing=0 cellpadding=0 border=0 width=100%>
+<tr>
+  <td rowspan=4 width=0%><br></td>
+  <td width=100%><font color=#000000 face="Courier New" size=2>Автор: <font color=#990000>tester</td>
+  <td rowspan=4 width=0%><br></td>
+</tr>
+<tr><td><font color=#000000 face="Courier New" size=2>Время: 20-06-04 11:47</td></tr>
+<tr><td bgcolor=#bfbfbf><br></td></tr>
+<tr><td><br clear=all><font color=#333333 face="Courier New" size=2><pre>n0p пришли исходник на асме мне на мыло adminworld@inbox.ru  P.S. заранее 
+благодарен  </pre><br></td></tr><tr><td colspan=3 align=right><small>&nbsp;&nbsp;</td></tr><tr><td colspan=2 bgcolor=#666666><br></td><td></td></tr>
+</table></a><br><br><table cellspacing=0 cellpadding=0 border=0 width=100%>
+<tr>
+  <td rowspan=4 width=0%><br></td>
+  <td width=100%><font color=#000000 face="Courier New" size=2>Автор: <font color=#990000>Шурик</td>
+  <td rowspan=4 width=0%><br></td>
+</tr>
+<tr><td><font color=#000000 face="Courier New" size=2>Время: 20-06-04 06:33</td></tr>
+<tr><td bgcolor=#bfbfbf><br></td></tr>
+<tr><td><br clear=all><font color=#333333 face="Courier New" size=2><pre>Пример на Делфи можно найти в его же исходниках. Смотрите в модуле 
+Classes.  </pre><br></td></tr><tr><td colspan=3 align=right><small>&nbsp;&nbsp;</td></tr><tr><td colspan=2 bgcolor=#666666><br></td><td></td></tr>
+</table></a><br><br><table cellspacing=0 cellpadding=0 border=0 width=100%>
+<tr>
+  <td rowspan=4 width=0%><br></td>
+  <td width=100%><font color=#000000 face="Courier New" size=2>Автор: <a href="&#109;&#097;&#105;&#108;&#116;&#111;&#058;&#097;&#046;&#107;&#097;&#110;&#097;&#116;&#056;&#054;"><font color=#990000>Kanat</a></td>
+  <td rowspan=4 width=0%><br></td>
+</tr>
+<tr><td><font color=#000000 face="Courier New" size=2>Время: 26-06-04 09:27</td></tr>
+<tr><td bgcolor=#bfbfbf><br></td></tr>
+<tr><td><br clear=all><font color=#333333 face="Courier New" size=2><pre> QuikSort-это неплохо, а ShtllSort-это круто!       </pre><br></td></tr><tr><td colspan=3 align=right><small>&nbsp;&nbsp;</td></tr><tr><td colspan=2 bgcolor=#666666><br></td><td></td></tr>
+</table></a><br><br><table cellspacing=0 cellpadding=0 border=0 width=100%>
+<tr>
+  <td rowspan=4 width=0%><br></td>
+  <td width=100%><font color=#000000 face="Courier New" size=2>Автор: <font color=#990000>Orb</td>
+  <td rowspan=4 width=0%><br></td>
+</tr>
+<tr><td><font color=#000000 face="Courier New" size=2>Время: 05-09-04 01:23</td></tr>
+<tr><td bgcolor=#bfbfbf><br></td></tr>
+<tr><td><br clear=all><font color=#333333 face="Courier New" size=2><pre>&quot;квиксорт&quot; для поиска k-ого элемента в неотсортированном массиве 
+за O(n) это круто  </pre><br></td></tr><tr><td colspan=3 align=right><small>&nbsp;&nbsp;</td></tr><tr><td colspan=2 bgcolor=#666666><br></td><td></td></tr>
+</table></a><form name="comments_form" action="/postmessage.php" method="post">
+<input type=hidden name=article value=/sort/quick_sort>
+<table cellpadding=0 cellspacing=0 border=0 bgcolor=#666666>
+        <tr><td>
+                <table cellspacing=0 cellpadding=2 border=0 bgcolor=#eeeeee>
+                <tr><td colspan="2" bgcolor=#dddddd>Ваши комментарии. Вопросы будут удалены: для них есть форум.</td></tr>
+                <tr>
+                        <td width="0%" align="right">Имя:</td>
+                        <td width="100%"><input type=text maxlength=37 name=Name value=></td>
+                </tr>
+                <tr>
+                        <td align="right" nowrap>E-mail:</td>
+                        <td><input type=text name=Email value=></td>
+                </tr>
+                <tr><td colspan=2><textarea cols=55 rows=10 name=Message></textarea></td></tr>
+                <tr valign=middle><td colspan=2 height=35>&nbsp;&nbsp;<input type=submit value="OK"></td></tr>
+                </table>
+        </td></tr>
+</table>
+</form>
+</td>
+</tr>
+ <tr><td colspan=2>
+<br><hr width=100% size=1 color="#999999">
+<p align=right>Copyright 2000-2002  &copy; <a href="&#109;&#097;&#105;&#108;&#116;&#111;&#058;&#097;&#108;&#103;&#111;&#108;&#105;&#115;&#116;&#064;&#109;&#097;&#110;&#117;&#097;&#108;&#046;&#114;&#117;">Ilia Kantor</a>, при поддержке проекта <a href="http://www.manual.ru">MANUAL.RU</a><br>
+<div align="center"><a href="http://html.manual.ru" target="_blank"></a></div>
+<!-- <div align="center"><a href="http://algolist.makecd.ru"></a></div> -->
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+<!-- ...табличка для создания отступов-->
+<!-- HotLog -->
+<script language="javascript">
+hotlog_js="1.0";hotlog_d=document; hotlog_n=navigator;hotlog_rn=Math.random();
+hotlog_n_n=(hotlog_n.appName.substring(0,3)=="Mic")?0:1;
+hotlog_r=""+hotlog_rn+"&s=2161&r="+escape(hotlog_d.referrer)+"&pg="+
+escape(window.location.href);
+hotlog_d.cookie="hotlog=1"; hotlog_r+="&c="+(hotlog_d.cookie?"Y":"N");
+hotlog_d.cookie="hotlog=1; expires=Thu, 01-Jan-70 00:00:01 GMT"</script>
+<script language="javascript1.1">
+hotlog_js="1.1";hotlog_r+="&j="+(navigator.javaEnabled()?"Y":"N")</script>
+<script language="javascript1.2">
+hotlog_js="1.2";hotlog_s=screen;
+hotlog_r+="&wh="+hotlog_s.width+'x'+hotlog_s.height+"&px="+((hotlog_n_n==0)?
+hotlog_s.colorDepth:hotlog_s.pixelDepth)</script>
+<script language="javascript1.3">hotlog_js="1.3"</script>
+<script language="javascript">hotlog_r+="&js="+hotlog_js;
+hotlog_d.write("")</script>
+<noscript></noscript>
+<!-- /HotLog -->
+</body>
+</html>

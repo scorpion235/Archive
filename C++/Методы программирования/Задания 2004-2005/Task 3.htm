@@ -1,0 +1,161 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="ru">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Структуры данных: стек и список</title>
+</head>
+
+<body style="font-family:Arial; font-size:11pt">
+
+<p align="center"><font face="Arial" size="4">Задания для практических занятий по теме<br>
+«Структуры данных: стек и список»<br>
+часть </font><span lang="en-us"><font face="Arial" size="4">3</font></span></p>
+
+<p><font size="4">Префиксная и постфиксная запись арифметических выражений</font></p>
+
+<p>Компилятор при анализе арифметических выражений преобразует их из префиксной 
+записи в постфиксную.</p>
+
+<p>Префиксной записью называется запись арифметической операции, в которой знак 
+операции располагается между операндами. Это естественная запись, к которой мы 
+все привыкли и умеем ее читать. Но математические выражения в префиксной записи 
+не могут быть вычислены машиной &quot;на лету&quot;, т.к. для этого необходим 
+синтаксический разбор. Естественно, что каждый раз запуская программу это 
+выражение не может анализироваться - слишком большой расход времени. Для 
+вычисления математических выражений используется префиксная запись, т.е. запись 
+при которой знак операции располагается после операндов.</p>
+
+<p><b>Пример.<br>
+</b>Префиксная запись<span lang="en-us">:</span> <span lang="en-us">
+<font face="Courier New">a + b</font><br>
+</span>Постфиксная запсиь<span lang="en-us">:</span> <font face="Courier New">a 
+b +</font></p>
+
+<p>По любому префиксному выражению можно построить его постфиксный эквивалент.</p>
+
+<p><b>Более сложный пример.<br>
+</b>Префиксная запись: <font face="Courier New">(<span lang="en-us">a+b</span>)</font><span lang="en-us"><font face="Courier New">*c-d/(a+c)</font><br>
+</span>Постфиксная запись: <font face="Courier New"><span lang="en-us">a b + c * 
+d a c + / -</span></font></p>
+
+<p><font size="4">Правило преобразования.</font></p>
+
+<p>Определим правило преобразования префиксной записи в постфиксную рекурсивно.</p>
+
+<p>Пусть <font face="Courier New">postfix(&lt;выражение&gt;) </font>означает функцию 
+преобразования префиксной записи <font face="Courier New">&lt;выражение&gt;</font><span lang="en-us">
+</span>в постфиксный аналог, тогда имеет место соотношение </p>
+
+<p><font face="Courier New"><span lang="en-us">postfix(&lt;</span>операнд 1<span lang="en-us">&gt; 
+&lt;</span>операция<span lang="en-us">&gt; &lt;</span>операнд 2<span lang="en-us">&gt;)</span> 
+= <span lang="en-us"><br>
+</span>&nbsp;&nbsp;&nbsp; <span lang="en-us">postfix(&lt;</span>операнд 1<span lang="en-us">&gt;)</span>
+<span lang="en-us">postfix(&lt;</span>операнд 2<span lang="en-us">&gt;)</span>
+<span lang="en-us">&lt;</span>операция<span lang="en-us">&gt;</span></font></p>
+
+<p>Здесь <font face="Courier New"><span lang="en-us">&lt;</span>операция<span lang="en-us">&gt;</span></font> 
+- последняя арифметическая операция, выполняемая при вычислении значения 
+выражения.</p>
+
+<p>Таким образом, согласно введенному правилу <span lang="en-us"><br>
+</span><font face="Courier New">postfix((a+b)*c-d/</font><span lang="en-us"><font face="Courier New">(a+c)</font>)</span> 
+= <font face="Courier New"><br>
+&nbsp;&nbsp;&nbsp; postfix((a+b)*c</font><span lang="en-us">)</span>
+<font face="Courier New">postfix(d/</font><span lang="en-us"><font face="Courier New">(a+c)</font>)</span>
+<span lang="en"><font face="Courier New">­</font></span><font face="Courier New"> 
+= <br>
+<span lang="en-us">&nbsp;&nbsp;&nbsp; </span>postfix(a+b</font><span lang="en-us">)</span><font face="Courier New">
+<span lang="en-us">c * </span>d<span lang="en-us"> postfix</span></font><font face="Courier New"><span lang="en-us">(a+</span>c) 
+/ - =<br>
+<span lang="en-us">&nbsp;&nbsp;&nbsp; a b + c * d a c + / -</span></font></p>
+
+<p><font size="4">Правило вычисления.</font></p>
+
+<p>Допусти мы научились строить постфиксную запись. Теперь необходимо научиться 
+вычислять арифметические выражение, записанные в постфиксной записи.</p>
+
+<p>При вычислении используется стек, обозначим его <span lang="en-us">S</span>.</p>
+
+<p>0) Установить текущую позицию просмотра постфиксной записи на первый элемент.<br>
+1) Просматриваем постфиксную запись слева направо и заносить в стек
+<span lang="en-us">S </span>все встречающиеся переменные до тех пор, пока нам не 
+встретиться знак операции.<br>
+2) Извлечь из стека <span lang="en-us">S </span>два вершинных элемента и 
+применить к ним операцию.<br>
+3) Затолкать в стек <span lang="en-us">S </span>полученное число.<br>
+4) Если постфиксная запись просмотрена до конца, то в <span lang="en-us">S
+</span>должно находиться единственное число - значение выражения<span lang="en-us">.</span> 
+Останавливаемся. <br>
+5) Переходим к шагу 1). </p>
+
+<p><font size="4">Задание.</font></p>
+
+<p>1. Обосновать правило преобразования.</p>
+
+<p>2. Обосновать правило вычисления.</p>
+
+<p>3. Реализовать процедуру преобразования префиксной записи числа в 
+постфиксную.</p>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber1">
+  <tr>
+    <td width="4%">&nbsp;</td>
+    <td width="96%"><font style="font-size: 11pt">Будем предполагать, что изначально в префиксную запись 
+    входят операнды, обозначаемы маленькими латинскими буквами, знаки операций (<font face="Courier New">+,-,*,/</font>) 
+    и знаки расстановки приоритетов (круглые скобки). См. Более сложный пример. 
+    Дополнительно можно реализовать операцию <font face="Courier New">
+    <span lang="en-us">^</span></font> (возведение в степень)<span lang="en-us">
+    </span>или другие бинарные операции.</font><p><font style="font-size: 11pt">Программа должна считывать исходное 
+    выражение из файла <font face="Courier New">expression.txt</font> и выводить 
+    его вместе с результатом преобразования на экран.</font></td>
+  </tr>
+</table>
+
+<p><span lang="en-us">4. </span>Дополним список арифметических операций ещё 
+дополнительными функциями:<br>
+&nbsp;&nbsp;&nbsp; а) <font face="Courier New">&quot;<span lang="en-us">^</span>&quot;</font> 
+-- возведение в степень;<br>
+&nbsp;&nbsp;&nbsp; б) тригонометрические функции (<font face="Courier New">sin</font><span lang="en-us">,
+</span><font face="Courier New">cos</font><span lang="en-us">, </span>
+<font face="Courier New">tan</font><span lang="en-us">, </span>
+<font face="Courier New">cot</font><span lang="en-us">, </span>
+<font face="Courier New">asin</font><span lang="en-us">, </span>
+<font face="Courier New">acos</font><span lang="en-us">, </span>
+<font face="Courier New">atan</font><span lang="en-us">, </span>
+<font face="Courier New">acot</font>)<span lang="en-us">;<br>
+&nbsp;&nbsp;&nbsp; </span>в<span lang="en-us">) </span>показательные функции (<font face="Courier New">exp</font><span lang="en-us">,
+</span><font face="Courier New">ln</font>)<span lang="en-us">;<br>
+</span>&nbsp;&nbsp;&nbsp; г) степенные функции (<span lang="en-us"><font face="Courier New">sqrt</font> 
+- </span>квадратный корень,<span lang="en-us"> </span><font face="Courier New">
+sqrt3</font><span lang="en-us"> - </span>кубический корень).<span lang="en-us"><br>
+&nbsp;&nbsp;&nbsp; </span>г) что-нибудь на Ваш выбор.</p>
+
+<p><span lang="en-us">5</span>. Реализовать процедуру вычисления постфиксного выражения.</p>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber1">
+  <tr>
+    <td width="4%">&nbsp;</td>
+    <td width="96%"><span style="font-size: 11pt">Будем дополнительно предполагать, что в файле
+    <font face="Courier New">expression.txt </font>помимо префиксной записи в 
+    строках, начиная со второй, расположены записи вида<br>
+    <font face="Courier New"><span lang="en-us">&lt;</span>переменная<span lang="en-us">&gt;</span>=<span lang="en-us">&lt;</span>значение</font><span lang="en-us"><font face="Courier New">&gt;</font><br>
+    </span>из которых необходимо получить значения переменных для подстановки в 
+    выражение.</span><p><span style="font-size: 11pt">При реализации использовать написанный ранее класс
+    <font face="Courier New">Stack</font>.</span></p>
+    <p><span style="font-size: 11pt">Вычисленное значение и значения переменных необходимо вывести на экран.</span></td>
+  </tr>
+</table>
+
+<p align="left">6. Написать прикладную программу с возможностью ввода 
+пользовательских функций, являющихся композицией основных.<br>
+Пример:<br>
+&nbsp;&nbsp;&nbsp; построение графиков функций;<br>
+&nbsp;&nbsp;&nbsp; исследование функций на минимум и максимум.</p>
+
+<p align="right"><span lang="en-us"><font size="1">&nbsp;<font face="Arial">©
+</font>Mikhail Leptchinski, 2003</font></span></p>
+
+</body>
+
+</html>
