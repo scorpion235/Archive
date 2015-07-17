@@ -1,0 +1,147 @@
+Microsoft (R) Macro Assembler Version 5.00                  12/8/4                                                             Page     1-1
+
+
+ 0000				data_s segment para public 
+ 0000  82 A2 A5 A4 A8 E2 A5	message1 db 'Введите координаты первой точки.(0
+				..319 , 0..199)$' 
+       20 AA AE AE E0 A4 A8	
+       AD A0 E2 EB 20 AF A5	
+       E0 A2 AE A9 20 E2 AE	
+       E7 AA A8 2E 28 30 2E	
+       2E 33 31 39 20 2C 20	
+       30 2E 2E 31 39 39 29	
+       24			
+ 0032  82 A2 A5 A4 A8 E2 A5	message2 db 'Введите координаты второй точки.(0
+				..319 , 0..199)$' 
+       20 AA AE AE E0 A4 A8	
+       AD A0 E2 EB 20 A2 E2	
+       AE E0 AE A9 20 E2 AE	
+       E7 AA A8 2E 28 30 2E	
+       2E 33 31 39 20 2C 20	
+       30 2E 2E 31 39 39 29	
+       24			
+ 0064  0000			x1 dw 0 
+ 0066  0000			y1 dw 0 
+ 0068  00C8			x2 dw 200 
+ 006A  0140			y2 dw 320 
+ 006C  ????			x dw ? 
+ 006E  ????			y dw ? 
+ 0070				data_s ends 
+				 
+ 0000				st_seg segment para stack 
+ 0000  0100[			db 256 dup(?) 
+	    ??			
+			 ]	
+				
+ 0100				st_seg ends 
+				 
+ 0000				code_s segment para public 
+				assume ss:st_seg, ds:data_s 
+				assume cs:code_s 
+				 
+ 0000  B8 ---- R		begin:		mov 	ax, data_s 
+ 0003  8E D8					mov	ds, ax 
+ 0005  B8 ---- R				mov	ax, st_seg 
+ 0008  8E D0					mov 	ss, ax 
+						 
+ 000A  A1 0066 R				mov ax, y1 
+ 000D  A3 006E R				mov y, ax 
+				 
+ 0010  B8 0013					mov ax , 0013h 
+ 0013  CD 10					int 10h 
+				 
+				 
+				;Рисование точки 
+ 0015  A1 006E R		print:		mov ax ,y               ;ax=x 
+ 0018  2B 06 0066 R				sub ax ,y1		;ax=(x-
+				x1) 
+Microsoft (R) Macro Assembler Version 5.00                  12/8/4                                                             Page     1-2
+
+
+ 001C  8B 16 0068 R				mov dx, x2              ;dx=y1 
+ 0020  2B 16 0064 R				sub dx, x1              ;dx=y1-
+				y2 
+ 0024  F7 E2					mul dx 			;dx:ax=
+				(x-x1)*(y1-y2) 
+ 0026  8B 0E 006A R				mov cx, y2              ;cx=x1 
+ 002A  2B 0E 0066 R				sub cx, y1		;cx=x1-
+				x2 
+ 002E  F7 F1					div cx 
+				 
+ 0030  03 06 0064 R				add ax, x1  
+ 0034  A3 006C R				mov x, ax 
+				 
+				 
+ 0037  B4 0C					mov ah, 0ch 
+ 0039  8B 16 006C R				mov dx,  x 
+ 003D  8B 0E 006E R				mov cx,  y 
+ 0041  B0 02					mov al, 2h 
+ 0043  CD 10					int 10h 
+ 0045  FF 06 006E R				inc y 
+				 
+ 0049  A1 006A R				mov ax, y2 
+						 
+ 004C  39 06 006E R				cmp y, ax 
+ 0050  74 02					je nready; Если равно, то выход
+				им из цикла 
+ 0052  EB C1					jmp print; В противном случаеа 
+				снова входим в цикл 
+				 
+				 
+				;Ожидаем нажатия клавишы 
+ 0054  B4 01			nready:		mov ah ,01h 
+ 0056  CD 16					int 16h 
+ 0058  74 FA					jz nready 
+				 
+				;Переход в текстовый режим с последующим выходо
+				м 
+ 005A  B8 0003					mov ax, 0003h 
+ 005D  CD 10					int 10h 
+ 005F  B4 4C					mov ah, 4ch 
+ 0061  B0 00					mov al, 0 
+ 0063  CD 21					int 21h 
+ 0065				code_s ends 
+				end begin 
+Microsoft (R) Macro Assembler Version 5.00                  12/8/4                                                             Symbols-1
+
+
+Segments and Groups:
+
+                N a m e         	Length	 Align	Combine Class
+
+CODE_S . . . . . . . . . . . . .  	0065	PARA	PUBLIC	
+DATA_S . . . . . . . . . . . . .  	0070	PARA	PUBLIC	
+ST_SEG . . . . . . . . . . . . .  	0100	PARA	STACK	
+
+Symbols:            
+
+                N a m e         	Type	 Value	 Attr
+
+BEGIN  . . . . . . . . . . . . .  	L NEAR	0000	CODE_S
+
+MESSAGE1 . . . . . . . . . . . .  	L BYTE	0000	DATA_S
+MESSAGE2 . . . . . . . . . . . .  	L BYTE	0032	DATA_S
+
+NREADY . . . . . . . . . . . . .  	L NEAR	0054	CODE_S
+
+PRINT  . . . . . . . . . . . . .  	L NEAR	0015	CODE_S
+
+X  . . . . . . . . . . . . . . .  	L WORD	006C	DATA_S
+X1 . . . . . . . . . . . . . . .  	L WORD	0064	DATA_S
+X2 . . . . . . . . . . . . . . .  	L WORD	0068	DATA_S
+
+Y  . . . . . . . . . . . . . . .  	L WORD	006E	DATA_S
+Y1 . . . . . . . . . . . . . . .  	L WORD	0066	DATA_S
+Y2 . . . . . . . . . . . . . . .  	L WORD	006A	DATA_S
+
+@FILENAME  . . . . . . . . . . .  	TEXT  line_out		
+
+
+     72 Source  Lines
+     72 Total   Lines
+     16 Symbols
+
+  50376 + 442536 Bytes symbol space free
+
+      0 Warning Errors
+      0 Severe  Errors

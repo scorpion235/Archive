@@ -1,0 +1,98 @@
+Microsoft (R) Macro Assembler Version 5.00                  12/8/4                                                             Page     1-1
+
+
+ 0000				data_s segment para public 
+ 0000  82 A2 A5 A4 A8 E2 A5	string db 'Введите строку: $' 
+       20 E1 E2 E0 AE AA E3	
+       3A 20 24			
+ 0011  82 A2 A5 A4 A5 AD AD	string2 db 'Введенная строка: $' 
+       A0 EF 20 E1 E2 E0 AE	
+       AA A0 3A 20 24		
+ 0024  4D 3A 5C 61 73 73 65	file_name db 'M:\assembler\myfile.txt$' 
+       6D 62 6C 65 72 5C 6D	
+       79 66 69 6C 65 2E 74	
+       78 74 24			
+ = 003C				Buffer equ $ 
+ 003C				data_s ends 
+				 
+ 0000				st_seg segment para stack 
+ 0000  0100[			db 256 dup(?) 
+	    ??			
+			 ]	
+				
+ 0100				st_seg ends 
+				 
+ 0000				code_s segment para public 
+				assume ss: st_seg , ds: data_s 
+				assume cs: code_s 
+				 
+ 0000				begin:  
+ 0000  B8 ---- R			MOV ax , data_s 
+ 0003  8E D8				MOV ds , ax 
+ 0005  B8 ---- R			MOV ax , st_seg 
+ 0008  8E D0				MOV ss , ax 
+				 
+ 000A  B4 09				mov ah, 09h	 
+ 000C  BA 0000 R			mov dx, offset string 
+ 000F  CD 21				int 21h 
+				 
+				 
+ 0011  B4 3F				mov AH, 3FH 
+ 0013  BB 0000				mov BX, 0 
+ 0016  BA 003C R			mov DX, offset Buffer 
+ 0019  B9 0064				mov CX, 100 
+ 001C  CD 21				int 21h 
+				 
+ 001E  B4 09				mov ah,09h 
+ 0020  BA 0011 R			mov dx, offset string2 
+ 0023  CD 21				int 21h 
+				 
+ 0025  B4 40				mov AH, 40h 
+ 0027  BB 0000				mov BX, 0 
+ 002A  BA 003C R			mov DX, offset Buffer 
+ 002D  B9 0064				mov CX, 100 
+ 0030  CD 21				int 21h 
+					 
+ 0032  B4 4C			        MOV ah , 4ch 
+ 0034  CD 21				int 21h 
+Microsoft (R) Macro Assembler Version 5.00                  12/8/4                                                             Page     1-2
+
+
+				 
+				 
+ 0036				code_s ends 
+				end begin 
+Microsoft (R) Macro Assembler Version 5.00                  12/8/4                                                             Symbols-1
+
+
+Segments and Groups:
+
+                N a m e         	Length	 Align	Combine Class
+
+CODE_S . . . . . . . . . . . . .  	0036	PARA	PUBLIC	
+DATA_S . . . . . . . . . . . . .  	003C	PARA	PUBLIC	
+ST_SEG . . . . . . . . . . . . .  	0100	PARA	STACK	
+
+Symbols:            
+
+                N a m e         	Type	 Value	 Attr
+
+BEGIN  . . . . . . . . . . . . .  	L NEAR	0000	CODE_S
+BUFFER . . . . . . . . . . . . .  	NEAR	003C	DATA_S
+
+FILE_NAME  . . . . . . . . . . .  	L BYTE	0024	DATA_S
+
+STRING . . . . . . . . . . . . .  	L BYTE	0000	DATA_S
+STRING2  . . . . . . . . . . . .  	L BYTE	0011	DATA_S
+
+@FILENAME  . . . . . . . . . . .  	TEXT  str_in		
+
+
+     48 Source  Lines
+     48 Total   Lines
+     10 Symbols
+
+  50348 + 442564 Bytes symbol space free
+
+      0 Warning Errors
+      0 Severe  Errors

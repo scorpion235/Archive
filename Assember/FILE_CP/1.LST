@@ -1,0 +1,140 @@
+Microsoft (R) Macro Assembler Version 5.00                  12/8/4                                                             Page     1-1
+
+
+ 0000				data_s segment para public 
+ 0000  4D 3A 5C 6D 79 66 69	file_name db 'M:\myfile.txt',0 
+       6C 65 2E 74 78 74 00	
+ 000E  4D 3A 5C 6E 65 77 2E	new_file db 'M:\new.txt',0 
+       74 78 74 00		
+ 0019  8E E8 A8 A1 AA A0 20	error_message db 'Ошибка при открытии файла$' 
+       AF E0 A8 20 AE E2 AA	
+       E0 EB E2 A8 A8 20 E4	
+       A0 A9 AB A0 24		
+ 0033  7530[			bufer db 30000 dup(?) 
+	    ??			
+			 ]	
+				
+ 7563  0000			desc_a dw 0 
+ 7565  0000			desc_b dw 0 
+ 7567  0000			symb_readed dw 0 
+ 7569				data_s ends 
+				 
+ 0000				st_seg segment para stack 
+ 0000  0100[			db 256 dup(?) 
+	    ??			
+			 ]	
+				
+ 0100				st_seg ends 
+				 
+ 0000				code_s segment para public 
+				assume ss: st_seg , ds: data_s 
+				assume cs: code_s 
+				 
+ 0000				begin:  
+ 0000  B8 ---- R			MOV ax , data_s 
+ 0003  8E D8				MOV ds , ax 
+ 0005  B8 ---- R			MOV ax , st_seg 
+ 0008  8E D0				MOV ss , ax 
+				 
+				;Открытие файла для чтения 
+ 000A  B4 3D				mov ah, 3dh 
+ 000C  B0 00				mov al ,0h 
+ 000E  BA 0000 R			mov dx, offset file_name 
+ 0011  CD 21				int 21h 
+				 
+ 0013  72 45				JC error1 
+				 
+ 0015  A3 7563 R			mov desc_a, ax 
+				 
+				;Создание файла для записи 
+ 0018  B4 3C				mov ah, 3ch 
+ 001A  BA 000E R			mov dx , offset new_file 
+ 001D  B9 0001				mov cx, 01h  
+ 0020  CD 21				int 21h 
+				 
+ 0022  72 36				JC error1 
+				 
+ 0024  A3 7565 R			mov desc_b,ax	 
+Microsoft (R) Macro Assembler Version 5.00                  12/8/4                                                             Page     1-2
+
+
+				 
+				 
+				;Чтение из файла в буфер	 
+ 0027  B4 3F				mov ah, 3fh 
+ 0029  8B 1E 7563 R			mov bx, desc_a 
+ 002D  BA 0033 R			mov dx, offset bufer 
+ 0030  B9 2710				mov cx, 10000 
+ 0033  CD 21				int 21h 
+				 
+				;вывод содержимого буфера в файл 
+ 0035  8B C8				mov cx, ax 
+ 0037  B4 40				mov ah, 40h 
+ 0039  8B 1E 7565 R			mov bx , desc_b 
+ 003D  BA 0033 R			mov dx , offset bufer 
+ 0040  CD 21				int 21h 
+				 
+				;закрытие файлов 
+ 0042  B8 003E				mov ax ,3eh 
+ 0045  8B 1E 7563 R			mov bx ,desc_a 
+ 0049  CD 21				int 21h 
+ 004B  B8 003E				mov ax ,3eh 
+ 004E  8B 1E 7565 R			mov bx, desc_b 
+ 0052  CD 21				int 21h 
+				 
+				;выход 
+ 0054  B4 4C			exit:	mov ah, 4ch 
+ 0056  B0 00				mov al , 0 
+ 0058  CD 21				int 21h 
+				 
+ 005A				error1: 
+ 005A  B4 09				mov ah ,09h 
+ 005C  BA 0019 R			mov dx ,offset error_message 
+ 005F  CD 21				int 21h 
+ 0061  EB F1				jmp exit 
+				 
+					 
+ 0063				code_s ends 
+				end begin 
+Microsoft (R) Macro Assembler Version 5.00                  12/8/4                                                             Symbols-1
+
+
+Segments and Groups:
+
+                N a m e         	Length	 Align	Combine Class
+
+CODE_S . . . . . . . . . . . . .  	0063	PARA	PUBLIC	
+DATA_S . . . . . . . . . . . . .  	7569	PARA	PUBLIC	
+ST_SEG . . . . . . . . . . . . .  	0100	PARA	STACK	
+
+Symbols:            
+
+                N a m e         	Type	 Value	 Attr
+
+BEGIN  . . . . . . . . . . . . .  	L NEAR	0000	CODE_S
+BUFER  . . . . . . . . . . . . .  	L BYTE	0033	DATA_S	Length = 7530
+
+DESC_A . . . . . . . . . . . . .  	L WORD	7563	DATA_S
+DESC_B . . . . . . . . . . . . .  	L WORD	7565	DATA_S
+
+ERROR1 . . . . . . . . . . . . .  	L NEAR	005A	CODE_S
+ERROR_MESSAGE  . . . . . . . . .  	L BYTE	0019	DATA_S
+EXIT . . . . . . . . . . . . . .  	L NEAR	0054	CODE_S
+
+FILE_NAME  . . . . . . . . . . .  	L BYTE	0000	DATA_S
+
+NEW_FILE . . . . . . . . . . . .  	L BYTE	000E	DATA_S
+
+SYMB_READED  . . . . . . . . . .  	L WORD	7567	DATA_S
+
+@FILENAME  . . . . . . . . . . .  	TEXT  f_cp		
+
+
+     81 Source  Lines
+     81 Total   Lines
+     15 Symbols
+
+  50358 + 442554 Bytes symbol space free
+
+      0 Warning Errors
+      0 Severe  Errors

@@ -1,0 +1,96 @@
+Microsoft (R) Macro Assembler Version 5.00                  12/8/4                                                             Page     1-1
+
+
+ 0000				data_s segment para public 
+ 0000  4D 3A 5C 6D 79 66 69	file_name db 'M:\myfile.txt$' 
+       6C 65 2E 74 78 74 24	
+ 000E  2710[			bufer db 10000 dup(?) 
+	    ??			
+			 ]	
+				
+ 271E  0000			descriptor dw 0 
+ 2720				data_s ends 
+				 
+ 0000				st_seg segment para stack 
+ 0000  0100[			db 256 dup(?) 
+	    ??			
+			 ]	
+				
+ 0100				st_seg ends 
+				 
+ 0000				code_s segment para public 
+				assume ss: st_seg , ds: data_s 
+				assume cs: code_s 
+				 
+ 0000				begin:  
+ 0000  B8 ---- R			MOV ax , data_s 
+ 0003  8E D8				MOV ds , ax 
+ 0005  B8 ---- R			MOV ax , st_seg 
+ 0008  8E D0				MOV ss , ax 
+				 
+				 
+ 000A  B4 3D				mov ah, 3dh 
+ 000C  B0 00				mov al ,0h 
+ 000E  BA 0000 R			mov dx, offset file_name 
+ 0011  CD 21				int 21h 
+				 
+ 0013  A3 271E R			mov descriptor , ax 
+				 
+				;Чтение из файлов	 
+ 0016  B4 3F				mov ah, 3fh 
+ 0018  8B 1E 271E R			mov bx, descriptor 
+ 001C  BA 000E R			mov dx, offset bufer 
+ 001F  B9 2710				mov cx, 10000 
+ 0022  CD 21				int 21h 
+				 
+				;вывод содержимого буфера на экран 
+ 0024  8B C8				mov cx, ax 
+ 0026  B4 40				mov ah, 40h 
+ 0028  BB 0001				mov bx , 1 
+ 002B  BA 000E R			mov dx , offset bufer 
+ 002E  CD 21				int 21h 
+				 
+				;выход 
+ 0030  B4 4C				mov ah, 4ch 
+ 0032  B0 00				mov al , 0 
+ 0034  CD 21				int 21h 
+				 
+Microsoft (R) Macro Assembler Version 5.00                  12/8/4                                                             Page     1-2
+
+
+					  
+ 0036				code_s ends 
+				end begin 
+Microsoft (R) Macro Assembler Version 5.00                  12/8/4                                                             Symbols-1
+
+
+Segments and Groups:
+
+                N a m e         	Length	 Align	Combine Class
+
+CODE_S . . . . . . . . . . . . .  	0036	PARA	PUBLIC	
+DATA_S . . . . . . . . . . . . .  	2720	PARA	PUBLIC	
+ST_SEG . . . . . . . . . . . . .  	0100	PARA	STACK	
+
+Symbols:            
+
+                N a m e         	Type	 Value	 Attr
+
+BEGIN  . . . . . . . . . . . . .  	L NEAR	0000	CODE_S
+BUFER  . . . . . . . . . . . . .  	L BYTE	000E	DATA_S	Length = 2710
+
+DESCRIPTOR . . . . . . . . . . .  	L WORD	271E	DATA_S
+
+FILE_NAME  . . . . . . . . . . .  	L BYTE	0000	DATA_S
+
+@FILENAME  . . . . . . . . . . .  	TEXT  file_out		
+
+
+     50 Source  Lines
+     50 Total   Lines
+      9 Symbols
+
+  50338 + 442574 Bytes symbol space free
+
+      0 Warning Errors
+      0 Severe  Errors

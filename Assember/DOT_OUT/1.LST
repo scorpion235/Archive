@@ -1,0 +1,73 @@
+Microsoft (R) Macro Assembler Version 5.00                  12/8/4                                                             Page     1-1
+
+
+ 0000				data_s segment para public 
+ 0000				data_s ends 
+				 
+ 0000				st_seg segment para stack 
+ 0000  0100[			db 256 dup(?) 
+	    ??			
+			 ]	
+				
+ 0100				st_seg ends 
+				 
+ 0000				code_s segment para public 
+				assume ss:st_seg, ds:data_s 
+				assume cs:code_s 
+				 
+ 0000  B8 ---- R		begin:		mov 	ax, data_s 
+ 0003  8E D8					mov	ds, ax 
+ 0005  B8 ---- R				mov	ax, st_seg 
+ 0008  8E D0					mov 	ss, ax 
+				 
+ 000A  B8 0013					mov ax, 0013h 
+ 000D  CD 10					int 10h 
+				 
+ 000F  B4 0C					mov ah, 0ch 
+ 0011  BA 0064					mov dx, 100 
+ 0014  B9 0064					mov cx, 100 
+ 0017  B0 02					mov al, 2h 
+ 0019  CD 10					int 10h 
+				 
+				 
+ 001B  B4 01			nready:		mov ah ,01h 
+ 001D  CD 16					int 16h 
+ 001F  74 FA					jz nready 
+				 
+ 0021  B8 0003					mov ax, 0003h 
+ 0024  CD 10					int 10h		 
+ 0026  B4 4C					mov ah, 4ch 
+ 0028  B0 00					mov al, 0 
+ 002A  CD 21					int 21h 
+ 002C				code_s ends 
+				end begin 
+Microsoft (R) Macro Assembler Version 5.00                  12/8/4                                                             Symbols-1
+
+
+Segments and Groups:
+
+                N a m e         	Length	 Align	Combine Class
+
+CODE_S . . . . . . . . . . . . .  	002C	PARA	PUBLIC	
+DATA_S . . . . . . . . . . . . .  	0000	PARA	PUBLIC	
+ST_SEG . . . . . . . . . . . . .  	0100	PARA	STACK	
+
+Symbols:            
+
+                N a m e         	Type	 Value	 Attr
+
+BEGIN  . . . . . . . . . . . . .  	L NEAR	0000	CODE_S
+
+NREADY . . . . . . . . . . . . .  	L NEAR	001B	CODE_S
+
+@FILENAME  . . . . . . . . . . .  	TEXT  dot_out		
+
+
+     37 Source  Lines
+     37 Total   Lines
+      7 Symbols
+
+  50386 + 442526 Bytes symbol space free
+
+      0 Warning Errors
+      0 Severe  Errors

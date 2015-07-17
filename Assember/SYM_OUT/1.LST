@@ -1,0 +1,61 @@
+Microsoft (R) Macro Assembler Version 5.00                  12/8/4                                                             Page     1-1
+
+
+ 0000				data_s segment para public 
+ 0000				data_s ends 
+				 
+ 0000				st_seg segment para stack 
+ 0000  0100[			db 256 dup(?) 
+	    ??			
+			 ]	
+				
+ 0100				st_seg ends 
+				 
+ 0000				code_s segment para public 
+				assume ss: st_seg , ds: data_s 
+				assume cs: code_s 
+				 
+ 0000				begin:  
+ 0000  B8 ---- R			MOV ax , data_s 
+ 0003  8E D8				MOV ds , ax 
+ 0005  B8 ---- R			MOV ax , st_seg 
+ 0008  8E D0				MOV ss , ax 
+				 
+ 000A  B2 43				MOV DL , 'C' 
+ 000C  B4 02				MOV AH , 02H 
+ 000E  CD 21				int 21h 
+				 
+ 0010  B4 4C				MOV AH , 4ch 
+ 0012  B0 00				MOV al , 0 
+ 0014  CD 21				int 21h 
+				 
+ 0016				code_s ends 
+				end begin 
+Microsoft (R) Macro Assembler Version 5.00                  12/8/4                                                             Symbols-1
+
+
+Segments and Groups:
+
+                N a m e         	Length	 Align	Combine Class
+
+CODE_S . . . . . . . . . . . . .  	0016	PARA	PUBLIC	
+DATA_S . . . . . . . . . . . . .  	0000	PARA	PUBLIC	
+ST_SEG . . . . . . . . . . . . .  	0100	PARA	STACK	
+
+Symbols:            
+
+                N a m e         	Type	 Value	 Attr
+
+BEGIN  . . . . . . . . . . . . .  	L NEAR	0000	CODE_S
+
+@FILENAME  . . . . . . . . . . .  	TEXT  sym_o		
+
+
+     27 Source  Lines
+     27 Total   Lines
+      6 Symbols
+
+  50396 + 442516 Bytes symbol space free
+
+      0 Warning Errors
+      0 Severe  Errors

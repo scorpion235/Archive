@@ -1,0 +1,43 @@
+Microsoft (R) Macro Assembler Version 5.00                  12/8/4                                                             Page     1-1
+
+
+
+sym_o.asm(6): warning A4085: End of file, no END directive
+Microsoft (R) Macro Assembler Version 5.00                  12/8/4                                                             Page     1-1
+
+
+ 0000				data_s segment para public 
+ 0000  64			x db 100 
+ 0001  01			y db 1 
+ 0002				data_s ends 
+				 
+				 
+sym_o.asm(6): warning A4085: End of file, no END directive
+Microsoft (R) Macro Assembler Version 5.00                  12/8/4                                                             Symbols-1
+
+
+Segments and Groups:
+
+                N a m e         	Length	 Align	Combine Class
+
+DATA_S . . . . . . . . . . . . .  	0002	PARA	PUBLIC	
+
+Symbols:            
+
+                N a m e         	Type	 Value	 Attr
+
+X  . . . . . . . . . . . . . . .  	L BYTE	0000	DATA_S
+
+Y  . . . . . . . . . . . . . . .  	L BYTE	0001	DATA_S
+
+@FILENAME  . . . . . . . . . . .  	TEXT  sym_o		
+
+
+      5 Source  Lines
+      6 Total   Lines
+      5 Symbols
+
+  50476 + 442436 Bytes symbol space free
+
+      1 Warning Errors
+      1 Severe  Errors
