@@ -1,0 +1,63 @@
+CREATE TABLE DSM.PRODUCTS
+(
+  ID    NUMBER                                  NOT NULL,
+  NAME  VARCHAR2(200 BYTE)                      NOT NULL
+)
+TABLESPACE USERS
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+COMMENT ON TABLE DSM.PRODUCTS IS 'Товар';
+
+COMMENT ON COLUMN DSM.PRODUCTS.ID IS 'ID товара';
+
+COMMENT ON COLUMN DSM.PRODUCTS.NAME IS 'Наименование товара';
+
+
+CREATE UNIQUE INDEX DSM.PRODUCTS_PK ON DSM.PRODUCTS
+(ID)
+LOGGING
+TABLESPACE USERS
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+ALTER TABLE DSM.PRODUCTS ADD (
+  CONSTRAINT PRODUCTS_PK
+ PRIMARY KEY
+ (ID)
+    USING INDEX 
+    TABLESPACE USERS
+    PCTFREE    10
+    INITRANS   2
+    MAXTRANS   255
+    STORAGE    (
+                INITIAL          64K
+                MINEXTENTS       1
+                MAXEXTENTS       UNLIMITED
+                PCTINCREASE      0
+               ));
+

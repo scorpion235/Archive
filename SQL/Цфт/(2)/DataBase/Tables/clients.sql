@@ -1,0 +1,63 @@
+CREATE TABLE DSM.CLIENTS
+(
+  ID   NUMBER                                   NOT NULL,
+  FIO  VARCHAR2(200 BYTE)                       NOT NULL
+)
+TABLESPACE USERS
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+COMMENT ON TABLE DSM.CLIENTS IS 'Клиенты';
+
+COMMENT ON COLUMN DSM.CLIENTS.ID IS 'ID клиента';
+
+COMMENT ON COLUMN DSM.CLIENTS.FIO IS 'ФИО клиента';
+
+
+CREATE UNIQUE INDEX DSM.CLIENTS_PK ON DSM.CLIENTS
+(ID)
+LOGGING
+TABLESPACE USERS
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+ALTER TABLE DSM.CLIENTS ADD (
+  CONSTRAINT CLIENTS_PK
+ PRIMARY KEY
+ (ID)
+    USING INDEX 
+    TABLESPACE USERS
+    PCTFREE    10
+    INITRANS   2
+    MAXTRANS   255
+    STORAGE    (
+                INITIAL          64K
+                MINEXTENTS       1
+                MAXEXTENTS       UNLIMITED
+                PCTINCREASE      0
+               ));
+
