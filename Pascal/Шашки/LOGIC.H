@@ -1,0 +1,14 @@
+void start();
+void end();
+void rastanovka(int ccolor,int gcolor,int **A);
+int schet(int **A,int color);
+void hodgamer(int **A,int color);
+void oprXY(char X,char Y,int **j,int **i);
+int  hod(int **A,int color);
+int  srub(int**A,int color);
+void hodcomp(int **A,int color);
+int  var1(int i,int j,int **A,int color);
+int  var2(int i,int j,int **A,int color);
+int   def(int i,int j,int **A,int color);
+int  var3(int i,int j,int **A,int color);
+int   def1(int i,int j,int **A,int color);
