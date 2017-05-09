@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ProcedureInputParam" targetNamespace="http://tempuri.org/ProcedureInputParam.xsd" xmlns:mstns="http://tempuri.org/ProcedureInputParam.xsd" xmlns="http://tempuri.org/ProcedureInputParam.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ProcedureInputParam" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ProcedureInputParam" msprop:Generator_UserDSName="ProcedureInputParam">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ATTRIBUTE_VALUES" msprop:Generator_TableClassName="ATTRIBUTE_VALUESDataTable" msprop:Generator_TableVarName="tableATTRIBUTE_VALUES" msprop:Generator_TablePropName="ATTRIBUTE_VALUES" msprop:Generator_RowDeletingName="ATTRIBUTE_VALUESRowDeleting" msprop:Generator_RowChangingName="ATTRIBUTE_VALUESRowChanging" msprop:Generator_RowEvHandlerName="ATTRIBUTE_VALUESRowChangeEventHandler" msprop:Generator_RowDeletedName="ATTRIBUTE_VALUESRowDeleted" msprop:Generator_UserTableName="ATTRIBUTE_VALUES" msprop:Generator_RowChangedName="ATTRIBUTE_VALUESRowChanged" msprop:Generator_RowEvArgName="ATTRIBUTE_VALUESRowChangeEvent" msprop:Generator_RowClassName="ATTRIBUTE_VALUESRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ATTRIBUTE_CODE_x0020_" msprop:Generator_ColumnVarNameInTable="columnATTRIBUTE_CODE_" msprop:Generator_ColumnPropNameInRow="ATTRIBUTE_CODE_" msprop:Generator_ColumnPropNameInTable="ATTRIBUTE_CODE_Column" msprop:Generator_UserColumnName="ATTRIBUTE_CODE ">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UNIVERSAL_VALUE" msprop:Generator_ColumnVarNameInTable="columnUNIVERSAL_VALUE" msprop:Generator_ColumnPropNameInRow="UNIVERSAL_VALUE" msprop:Generator_ColumnPropNameInTable="UNIVERSAL_VALUEColumn" msprop:Generator_UserColumnName="UNIVERSAL_VALUE" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="OBJECT_VALUES" msprop:Generator_TableClassName="OBJECT_VALUESDataTable" msprop:Generator_TableVarName="tableOBJECT_VALUES" msprop:Generator_TablePropName="OBJECT_VALUES" msprop:Generator_RowDeletingName="OBJECT_VALUESRowDeleting" msprop:Generator_RowChangingName="OBJECT_VALUESRowChanging" msprop:Generator_RowEvHandlerName="OBJECT_VALUESRowChangeEventHandler" msprop:Generator_RowDeletedName="OBJECT_VALUESRowDeleted" msprop:Generator_UserTableName="OBJECT_VALUES" msprop:Generator_RowChangedName="OBJECT_VALUESRowChanged" msprop:Generator_RowEvArgName="OBJECT_VALUESRowChangeEvent" msprop:Generator_RowClassName="OBJECT_VALUESRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="OBJECT_ID" msprop:Generator_ColumnVarNameInTable="columnOBJECT_ID" msprop:Generator_ColumnPropNameInRow="OBJECT_ID" msprop:Generator_ColumnPropNameInTable="OBJECT_IDColumn" msprop:Generator_UserColumnName="OBJECT_ID" type="xs:long" />
+              <xs:element name="ATTRIBUTE_CODE_x0020_" msprop:Generator_ColumnVarNameInTable="columnATTRIBUTE_CODE_" msprop:Generator_ColumnPropNameInRow="ATTRIBUTE_CODE_" msprop:Generator_ColumnPropNameInTable="ATTRIBUTE_CODE_Column" msprop:Generator_UserColumnName="ATTRIBUTE_CODE ">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VALUE_SN" msprop:Generator_ColumnVarNameInTable="columnVALUE_SN" msprop:Generator_ColumnPropNameInRow="VALUE_SN" msprop:Generator_ColumnPropNameInTable="VALUE_SNColumn" msprop:Generator_UserColumnName="VALUE_SN" type="xs:long" />
+              <xs:element name="UNIVERSAL_VALUE_x0020_" msprop:Generator_ColumnVarNameInTable="columnUNIVERSAL_VALUE_" msprop:Generator_ColumnPropNameInRow="UNIVERSAL_VALUE_" msprop:Generator_ColumnPropNameInTable="UNIVERSAL_VALUE_Column" msprop:Generator_UserColumnName="UNIVERSAL_VALUE " type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ATTRIBUTE_VALUES" />
+      <xs:field xpath="mstns:ATTRIBUTE_CODE_x0020_" />
+    </xs:unique>
+    <xs:unique name="OBJECT_VALUES_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:OBJECT_VALUES" />
+      <xs:field xpath="mstns:OBJECT_ID" />
+      <xs:field xpath="mstns:ATTRIBUTE_CODE_x0020_" />
+      <xs:field xpath="mstns:VALUE_SN" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
