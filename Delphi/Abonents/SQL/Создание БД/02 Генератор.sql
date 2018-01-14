@@ -1,2 +1,0 @@
---генератор
-CREATE SEQUENCE GEN_AB;
