@@ -10,6 +10,6 @@ WordProcessor\dictionary\dictionary.txt - данные для словаря
 WordProcessor\WordProcessor\WordProcessor.sln - проект на C# (среда разработки VS2017)
 
 Параметры командной строки:
--create создание словаря
--update обновление словаря
--delete очистить словарь
+1) -create создание словаря
+2) -update обновление словаря
+3) -delete очистить словарь
