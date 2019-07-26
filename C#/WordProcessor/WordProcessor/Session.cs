@@ -64,10 +64,7 @@ namespace WordProcessor
             {                
                 FbTransaction transaction = Connection.BeginTransaction();
 
-                FbCommand command = new FbCommand();
-                command.CommandText = "EXECUTE PROCEDURE PKB_WORDS.INSERT_DATA(@WORD)";
-                command.Connection = Connection;
-                command.Transaction = transaction;
+                FbCommand command = new FbCommand("EXECUTE PROCEDURE PKB_WORDS.INSERT_DATA(@WORD)", Connection, transaction);
                 command.Parameters.Add("@WORD", FbDbType.VarChar);
                 command.Parameters[0].Value = word;
                 command.ExecuteNonQuery();
@@ -90,10 +87,7 @@ namespace WordProcessor
             {
                 FbTransaction transaction = Connection.BeginTransaction();
 
-                FbCommand command = new FbCommand();
-                command.CommandText = "EXECUTE PROCEDURE PKB_DICTIONARY.GENERATE";
-                command.Connection = Connection;
-                command.Transaction = transaction;
+                FbCommand command = new FbCommand("EXECUTE PROCEDURE PKB_DICTIONARY.GENERATE", Connection, transaction);
                 command.ExecuteNonQuery();
 
                 transaction.Commit();
@@ -113,13 +107,15 @@ namespace WordProcessor
         {
             FbTransaction transaction = Connection.BeginTransaction();
 
-            FbCommand command = new FbCommand();
-            command.CommandText = "EXECUTE PROCEDURE PKB_DICTIONARY.SELECT_DATA(@WORD)";
-            command.Connection = Connection;
-            command.Transaction = transaction;
+            FbCommand command = new FbCommand("SELECT WORD FROM PKB_DICTIONARY.SELECT_DATA(@WORD)", Connection, transaction);
             command.Parameters.Add("@WORD", FbDbType.VarChar);
             command.Parameters[0].Value = word;
-            command.ExecuteReader();
+            FbDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Console.WriteLine(string.Format("{0}", reader[0]));
+            }
 
             transaction.Commit();
             command.Dispose();
@@ -132,10 +128,7 @@ namespace WordProcessor
         {
             FbTransaction transaction = Connection.BeginTransaction();
 
-            FbCommand command = new FbCommand();
-            command.CommandText = "EXECUTE PROCEDURE PKB_WORDS.DELETE_DATA";
-            command.Connection = Connection;
-            command.Transaction = transaction;
+            FbCommand command = new FbCommand("EXECUTE PROCEDURE PKB_WORDS.DELETE_DATA", Connection, transaction);
             command.ExecuteNonQuery();
 
             command.CommandText = "EXECUTE PROCEDURE PKB_DICTIONARY.DELETE_DATA";
