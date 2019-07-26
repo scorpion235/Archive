@@ -44,10 +44,12 @@ namespace WordProcessor
                 return;
             }
 
-            //нет параметров командной строки (режив ввода)
-            string word = Console.ReadLine();
-            Command.DictionarySelection(word);
-            Console.ReadKey();
+            //нет параметров командной строки (режим ввода)
+            string word = string.Empty;
+            while ((word = Console.ReadLine()) != string.Empty)
+            {
+                Command.DictionarySelection(word);
+            }
         }
     }
 }

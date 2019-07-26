@@ -6,9 +6,9 @@ SET SQL DIALECT 3;
 
 SET NAMES UTF8;
 
-SET CLIENTLIB 'd:\Mercurial\local\WordProcessor\fbclient.dll';
+SET CLIENTLIB 'd:\Archive\C#\WordProcessor\db\fbclient.dll';
 
-CREATE DATABASE 'd:\Mercurial\local\WordProcessor\db\word_processor.fdb'
+CREATE DATABASE 'd:\Archive\C#\WordProcessor\db\word_processor1.fdb'
 USER 'SYSDBA' PASSWORD 'masterkey'
 PAGE_SIZE 16384
 DEFAULT CHARACTER SET UTF8 COLLATION UTF8;
