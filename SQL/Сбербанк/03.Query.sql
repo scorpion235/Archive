@@ -17,4 +17,4 @@ SELECT p.Name
          ON d.SecurityPaperID = p.ID
         AND CAST(d.DealDate AS DATE) >= CAST(@RegDate - 30 AS DATE)
  GROUP BY p.Name
-HAVING SUM(d.Count) >= 1000 AND COUNT(d.ClientID) >= 5
+HAVING SUM(d.Count) >= 1000 AND COUNT(DISTINCT d.ClientID) >= 5
